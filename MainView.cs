@@ -20,6 +20,10 @@ namespace Cafe
             panel = new Panel { Dock = DockStyle.Fill, Parent = pnlMainView };
             lblManager.Text = Global.loginUser;
 
+            //초기 기본 화면
+            ShowSubForm(new OrderView());
+            this.Text = "Order";
+
 
         }
 
