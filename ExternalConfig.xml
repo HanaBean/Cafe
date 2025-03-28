@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<database>
+		<user>CAFE_DEV</user>
+		<password>CAFE</password>
+		<host>localhost</host>
+		<port>1521</port>
+		<service>ORCL</service>
+	</database>
+</configuration>
