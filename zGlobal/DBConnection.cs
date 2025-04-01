@@ -7,7 +7,7 @@ namespace Cafe
 {
     public static class DBConnection
     {
-        private static string connectionString;
+        public static string connectionString;
 
         static DBConnection()
         {
@@ -24,11 +24,16 @@ namespace Cafe
                 {
                     XDocument xmlDoc = XDocument.Load(xmlFilePath);
 
-                    string user = xmlDoc.Root.Element("database").Element("user").Value;
-                    string password = xmlDoc.Root.Element("database").Element("password").Value;
-                    string host = xmlDoc.Root.Element("database").Element("host").Value;
-                    string port = xmlDoc.Root.Element("database").Element("port").Value;
-                    string service = xmlDoc.Root.Element("database").Element("service").Value;
+                    string user = xmlDoc.Root.Element("database").Element("user")?.Value;
+                    string password = xmlDoc.Root.Element("database").Element("password")?.Value;
+                    string host = xmlDoc.Root.Element("database").Element("host")?.Value;
+                    string port = xmlDoc.Root.Element("database").Element("port")?.Value;
+                    string service = xmlDoc.Root.Element("database").Element("service")?.Value;
+
+                    if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(host) || string.IsNullOrEmpty(port) || string.IsNullOrEmpty(service))
+                    {
+                        throw new Exception("XML에서 DB 정보가 제대로 설정되지 않았습니다.");
+                    }
 
                     connectionString = $"User Id={user};Password={password};Data Source={host}:{port}/{service}";
                 }
@@ -43,7 +48,8 @@ namespace Cafe
                     string defaultPort = "1521";
                     string defaultService = "orcl";
 
-                    connectionString = $"User Id={defaultUser};Password={defaultPassword};Data Source={defaultHost}:{defaultPort}/{defaultService}";
+                    //connectionString = $"User Id={defaultUser};Password={defaultPassword};Data Source={defaultHost}:{defaultPort}/{defaultService}";
+                    connectionString = "User Id=cafe_dev;Password=CAFE;Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=orcl)))";
                 }
             }
             catch (Exception ex)

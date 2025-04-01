@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="MainViews\OrderView.cs">
+    <Compile Update="MainViews\OrderView\OrderView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -35,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.7.0" />
   </ItemGroup>
 

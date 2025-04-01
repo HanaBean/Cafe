@@ -66,7 +66,8 @@ namespace Cafe
         {
             try
             {
-                using (OracleConnection conn = new OracleConnection(connectionString))
+                //using (OracleConnection conn = new OracleConnection(connectionString))
+                using (OracleConnection conn = new OracleConnection(DBConnection.connectionString))
                 {
                     conn.Open();
                     string query = "SELECT COUNT(*) FROM T9_USER WHERE USER_ID = :userId AND USE_FLAG = 'Y'";
